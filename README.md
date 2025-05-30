@@ -1,4 +1,4 @@
-# API User Auth
+# API de usuário com autenticação
 
 Projeto de autenticação com Node.js, TypeScript, PostgreSQL e JWT.
 
