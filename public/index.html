@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cadastro de Usuário</title>
+</head>
+<body>
+  <h1>Cadastrar Usuário</h1>
+  <form id="user-form">
+    <input type="text" name="name" placeholder="Nome" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <h2>Buscar Usuários</h2>
+  <button id="load-users">Listar Usuários</button>
+  <ul id="user-list"></ul>
+
+  <h2>Deletar Usuário</h2>
+  <form id="delete-form">
+    <input type="number" name="id" placeholder="ID do usuário" required />
+    <button type="submit">Deletar</button>
+  </form>
+
+  <script>
+    document.getElementById("user-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = e.target.name.value;
+      const email = e.target.email.value;
+
+      const response = await fetch("http://localhost:3000/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email })
+      });
+
+      const data = await response.json();
+      alert("Usuário cadastrado com ID: " + data.id);
+      e.target.reset();
+    });
+
+    document.getElementById("load-users").addEventListener("click", async () => {
+      const response = await fetch("http://localhost:3000/api/users");
+      const users = await response.json();
+      const userList = document.getElementById("user-list");
+      userList.innerHTML = "";
+      users.forEach(user => {
+        const li = document.createElement("li");
+        li.textContent = `ID: ${user.id} | Nome: ${user.name} | Email: ${user.email}`;
+        userList.appendChild(li);
+      });
+    });
+
+    document.getElementById("delete-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const id = e.target.id.value;
+
+      const response = await fetch(`http://localhost:3000/api/users/${id}`, {
+        method: "DELETE"
+      });
+
+      if (response.status === 204) {
+        alert("Usuário deletado com sucesso!");
+      } else {
+        alert("Erro ao deletar usuário. Verifique se o ID existe.");
+      }
+
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
