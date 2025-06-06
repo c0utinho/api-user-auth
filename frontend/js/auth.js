@@ -17,7 +17,6 @@ form.addEventListener("submit", async (e) => {
     });
 
     if (!response.ok) {
-      // Se for 401 ou qualquer erro, cai no catch
       throw new Error("Login inválido");
     }
 
@@ -25,7 +24,7 @@ form.addEventListener("submit", async (e) => {
     console.log("Token recebido do servidor:", data.token);
     localStorage.setItem("token", data.token);
     alert("Login realizado com sucesso!");
-    window.location.href = "home.html"; // redireciona para home.html
+    window.location.href = "home.html"; 
   } catch (error) {
     console.error("Erro ao fazer login:", error);
     errorMessage.classList.remove("hidden");

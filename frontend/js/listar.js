@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1) Verifica se existe token
+
   const token = localStorage.getItem("token");
   if (!token) {
     window.location.href = "index.html"; // login
@@ -10,13 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const errorMessage = document.getElementById("error-message");
   const btnLogout = document.getElementById("btn-logout");
 
-  // 2) Logout (mesma lógica do home)
+
   btnLogout.addEventListener("click", () => {
     localStorage.removeItem("token");
     window.location.href = "index.html";
   });
 
-  // 3) Função para buscar usuários
+ 
   async function fetchUsers() {
     try {
       const response = await fetch("http://localhost:3000/api/users", {
@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 4) Função para renderizar a lista de usuários
   function renderUsers(users) {
     usersContainer.innerHTML = ""; // limpa container
 
@@ -47,14 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
       card.className =
         "bg-white p-4 rounded shadow-md flex justify-between items-center";
 
-      // Exibe nome e email
       const info = document.createElement("div");
       info.innerHTML = `
         <p class="font-medium">${user.name}</p>
         <p class="text-sm text-gray-600">${user.email}</p>
       `;
 
-      // Botão para deletar o usuário
       const btnDelete = document.createElement("button");
       btnDelete.className =
         "bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 transition";
