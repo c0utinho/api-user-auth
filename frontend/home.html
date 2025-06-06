@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home - API User Auth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 h-screen flex flex-col">
+    <div class="flex-grow flex items-center justify-center">
+      <div class="bg-white p-8 rounded shadow-md w-full max-w-md text-center">
+        <h1 class="text-3xl font-bold mb-6">Bem-vindo(a)!</h1>
+        <p class="mb-8">Escolha uma opção abaixo:</p>
+        <div class="space-y-4">
+          <button
+            id="btn-cadastro"
+            class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+          >
+            Cadastrar Usuário
+          </button>
+
+          <button
+            id="btn-listar"
+            class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          >
+            Listar Usuários
+          </button>
+
+          <button
+            id="btn-logout"
+            class="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/home.js"></script>
+  </body>
+</html>
